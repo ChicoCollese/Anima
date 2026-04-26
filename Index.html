@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sistema Interceptado</title>
+
+<style>
+body {
+    background-color: #000;
+    color: #00ff9f;
+    font-family: monospace;
+    padding: 20px;
+    overflow: hidden;
+}
+
+.glitch {
+    color: white;
+    font-size: 22px;
+    margin-bottom: 20px;
+    animation: glitch 1.2s infinite;
+}
+
+@keyframes glitch {
+    0% { opacity: 1; }
+    50% { opacity: 0.3; }
+    100% { opacity: 1; }
+}
+
+#terminal {
+    white-space: pre-wrap;
+    line-height: 1.6;
+}
+
+.cursor {
+    display: inline-block;
+    width: 10px;
+    background: #00ff9f;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%, 50%, 100% { opacity: 1; }
+    25%, 75% { opacity: 0; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="glitch">
+ACESSO NÃO AUTORIZADO
+</div>
+
+<div id="terminal"></div>
+<span class="cursor"></span>
+
+<script>
+
+const text = [
+"> Inicializando conexão...",
+"> Bypass de segurança...",
+"> Acesso parcial concedido",
+"",
+"> Origem: desconhecida",
+"> Local: Nova Meridian",
+"",
+"> Sistema alvo: AXION",
+"> Status: comprometido",
+"",
+"> Se você está vendo isso...",
+"> não era para estar aqui",
+"",
+"> Estou interceptando dados",
+"> antes que apaguem tudo",
+"",
+"> Existe algo dentro do sistema",
+"> Não deveria existir",
+"",
+"> Referência encontrada:",
+"> K. DRAVEN",
+"",
+"> Consciência detectada após encerramento",
+"",
+"> Isso não faz sentido",
+"",
+"> Se eu desaparecer",
+"> continue procurando",
+"",
+"> transmissão instável..."
+];
+
+let i = 0;
+let j = 0;
+let currentLine = "";
+const speed = 30;
+
+function type() {
+    if (i < text.length) {
+        if (j < text[i].length) {
+            currentLine += text[i][j];
+            document.getElementById("terminal").innerText =
+                document.getElementById("terminal").innerText + text[i][j];
+            j++;
+            setTimeout(type, speed);
+        } else {
+            document.getElementById("terminal").innerText += "\n";
+            i++;
+            j = 0;
+            currentLine = "";
+            setTimeout(type, 400);
+        }
+    }
+}
+
+type();
+
+</script>
+
+</body>
+</html>
